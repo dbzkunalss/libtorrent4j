@@ -3,18 +3,18 @@ dist: focal
 
 matrix:
   include:
-    - env: os_build=macos os_arch=x86_64
-      os: osx
-      osx_image: xcode11.2
+    #- env: os_build=macos os_arch=x86_64
+    #  os: osx
+    #  osx_image: xcode11.2
     - env: os_build=android os_arch=arm
     - env: os_build=android os_arch=arm64
     - env: os_build=android os_arch=x86
     - env: os_build=android os_arch=x86_64
-    - env: os_build=linux os_arch=x86_64
+    #- env: os_build=linux os_arch=x86_64
 
 branches:
   only:
-    - master
+    - api-22
 
 before_install:
 # boost: download and bootstrap
@@ -42,7 +42,7 @@ before_install:
       echo "Extracting NDK...wait";
       unzip -qq android-ndk.zip;
       export NDK=$PWD/android-ndk-r21d;
-      $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api 24 --stl libc++ --install-dir android-toolchain;
+      $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api 22 --stl libc++ --install-dir android-toolchain;
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi
 
